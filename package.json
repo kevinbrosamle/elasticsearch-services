@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/chrispicato/elasticsearch-services/issues"
   },
-  "homepage": "https://github.com/chrispicato/elasticsearch-services#readme"
+  "homepage": "https://github.com/chrispicato/elasticsearch-services#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.11.0"
+  }
 }
