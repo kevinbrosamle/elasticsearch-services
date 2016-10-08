@@ -30,7 +30,22 @@ module.exports = {
     });
   },
 
-  // searchEvent: (req, res) => {
-  //
-  // },
+  searchEvent: (req, res) => {
+    client.search({
+      index: 'events',
+      type: 'event',
+      body: {
+        query: {
+          match: { 'eventName': 'leonard\'s birthday bonanza' }
+        },
+      }
+    }).then((result) => {
+      result.hits.hits.forEach((hit) => {
+        console.log(hit);
+      });
+      res.status(200).send(result);
+    }).catch((error, response, status) => {
+      console.log(error, status);
+    });
+  },
 };
