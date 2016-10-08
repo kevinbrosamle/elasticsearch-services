@@ -1,0 +1,32 @@
+{
+  "name": "elasticsearch-services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrispicato/elasticsearch-services.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrispicato/elasticsearch-services/issues"
+  },
+  "homepage": "https://github.com/chrispicato/elasticsearch-services#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "body-parser": "^1.15.2",
+    "elasticsearch": "^11.0.1",
+    "eslint": "^3.7.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.11.0"
+  }
+}
