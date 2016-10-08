@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./config');
 const client = require('./connection.js');
+const controller = require('./controller.js');
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -19,6 +20,10 @@ client.ping({
   } else {
     console.log('All is well');
   }
+});
+
+app.post('/api/events', (req, res) => {
+  controller.createEvent(req, res);
 });
 
 app.listen(config.ES_SERVER_PORT, () => {
