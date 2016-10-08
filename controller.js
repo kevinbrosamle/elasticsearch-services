@@ -2,6 +2,7 @@ const client = require('./connection.js');
 
 module.exports = {
   createEvent: (req, res) => {
+    console.log(req.body);
     client.index({
       index: 'events',
       type: 'event',
@@ -31,21 +32,44 @@ module.exports = {
   },
 
   searchEvent: (req, res) => {
+    // you can obtain the query with req.query.{insert eventName here}
+    // console.log(req.query.hello, 'this is the query string ------->>>>>>>>');
     client.search({
       index: 'events',
       type: 'event',
       body: {
         query: {
-          match: { 'eventName': 'leonard\'s birthday bonanza' }
+          match: {
+            'eventName': req.query.eventName
+          },
         },
-      }
+      },
     }).then((result) => {
+      console.log(result.hits.hits, 'this is the result ------>>>>>>>>>>>>>');
+      const resultsArray = [];
       result.hits.hits.forEach((hit) => {
-        console.log(hit);
+        const resultObj = {
+          eventName: hit._source.eventName,
+          eventContractAddress: hit._source.contractAddress,
+          eventCreateDateTime: hit._source.eventCreateDateTime,
+          eventStartDateTime: hit._source.eventStartDateTime,
+          eventEndDateTime: hit._source.eventEndDateTime,
+          description: hit._source.description,
+          addressLine1: hit._source.addressLine1,
+          addressLine2: hit._source.addressLine2,
+          city: hit._source.city,
+          state: hit._source.state,
+          zipPostalCode: hit._source.zipPostalCode,
+          country: hit._source.country,
+          image: hit._source.image,
+          price: hit._source.price,
+          quota: hit._source.quota,
+        };
+        resultsArray.push(resultObj);
       });
-      res.status(200).send(result);
+      res.status(200).send(resultsArray);
     }).catch((error, response, status) => {
-      console.log(error, status);
+      res.status(500).send(error);
     });
   },
 };
