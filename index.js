@@ -31,7 +31,7 @@ app.get('/api/events', (req, res) => {
 });
 
 app.listen(config.ES_SERVER_PORT, () => {
-  console.log('Elastic search server listening on', config.ES_SERVER_PORT);
+  console.log('Elasticsearch server listening on', config.ES_SERVER_PORT);
 });
 
 module.exports = client;

@@ -32,8 +32,6 @@ module.exports = {
   },
 
   searchEvent: (req, res) => {
-    // you can obtain the query with req.query.{insert eventName here}
-    // console.log(req.query.hello, 'this is the query string ------->>>>>>>>');
     client.search({
       index: 'events',
       type: 'event',
@@ -49,6 +47,7 @@ module.exports = {
         },
       },
     }).then((result) => {
+      // the result object stores a key which contains the matching results
       const results = [];
       result.hits.hits.forEach((hit) => {
         const resultObj = {
