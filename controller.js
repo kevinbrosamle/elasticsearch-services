@@ -38,15 +38,18 @@ module.exports = {
       index: 'events',
       type: 'event',
       body: {
-        query: {
-          match: {
-            'eventName': req.query.eventName
+        'query': {
+          'query_string': {
+            'query': '*' + req.query.eventName + '*',
+            'fields': [
+              'eventName',
+              'city',
+            ],
           },
         },
       },
     }).then((result) => {
-      console.log(result.hits.hits, 'this is the result ------>>>>>>>>>>>>>');
-      const resultsArray = [];
+      const results = [];
       result.hits.hits.forEach((hit) => {
         const resultObj = {
           eventName: hit._source.eventName,
@@ -65,9 +68,9 @@ module.exports = {
           price: hit._source.price,
           quota: hit._source.quota,
         };
-        resultsArray.push(resultObj);
+        results.push(resultObj);
       });
-      res.status(200).send(resultsArray);
+      res.status(200).send(results);
     }).catch((error, response, status) => {
       res.status(500).send(error);
     });
