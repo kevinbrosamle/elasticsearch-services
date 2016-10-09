@@ -30,7 +30,47 @@ module.exports = {
     });
   },
 
-  // searchEvent: (req, res) => {
-  //
-  // },
+  searchEvent: (req, res) => {
+    client.search({
+      index: 'events',
+      type: 'event',
+      body: {
+        'query': {
+          'query_string': {
+            'query': '*' + req.query.eventName + '*',
+            'fields': [
+              'eventName',
+              'city',
+            ],
+          },
+        },
+      },
+    }).then((result) => {
+      // the result object stores a key which contains the matching results
+      const results = [];
+      result.hits.hits.forEach((hit) => {
+        const resultObj = {
+          eventName: hit._source.eventName,
+          eventContractAddress: hit._source.contractAddress,
+          eventCreateDateTime: hit._source.eventCreateDateTime,
+          eventStartDateTime: hit._source.eventStartDateTime,
+          eventEndDateTime: hit._source.eventEndDateTime,
+          description: hit._source.description,
+          addressLine1: hit._source.addressLine1,
+          addressLine2: hit._source.addressLine2,
+          city: hit._source.city,
+          state: hit._source.state,
+          zipPostalCode: hit._source.zipPostalCode,
+          country: hit._source.country,
+          image: hit._source.image,
+          price: hit._source.price,
+          quota: hit._source.quota,
+        };
+        results.push(resultObj);
+      });
+      res.status(200).send(results);
+    }).catch((error, response, status) => {
+      res.status(500).send(error);
+    });
+  },
 };

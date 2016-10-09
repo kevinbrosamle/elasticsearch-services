@@ -7,15 +7,23 @@ const client = new elasticsearch.Client({
   ],
 });
 
-// Only needed for creation of index
+// uncomment and run server to create index
 // client.indices.create({
 //   index: 'events',
-// }, (error, response, status) => {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('create', response);
-//   }
+// }).then((response, status) => {
+//   console.log('create', response);
+// }).catch((error) => {
+//   console.log(error);
+// });
+
+// uncomment and run server to delete the index
+// client.delete({
+//   index: 'events',
+//   type: 'event',
+// }).then((response, status) => {
+//   console.log(response);
+// }).catch((error) => {
+//   console.log(error);
 // });
 
 module.exports = client;
