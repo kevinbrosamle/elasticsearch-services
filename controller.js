@@ -2,7 +2,6 @@ const client = require('./connection.js');
 
 module.exports = {
   createEvent: (req, res) => {
-    console.log(req.body);
     client.index({
       index: 'events',
       type: 'event',
