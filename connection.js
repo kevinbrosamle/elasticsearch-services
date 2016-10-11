@@ -17,10 +17,10 @@ const client = new elasticsearch.Client({
 // });
 
 // uncomment and run server to delete the index
-// client.delete({
+// client.indices.delete({
 //   index: 'events',
-//   type: 'event',
 // }).then((response, status) => {
+//   console.log('the events index has been deleted');
 //   console.log(response);
 // }).catch((error) => {
 //   console.log(error);

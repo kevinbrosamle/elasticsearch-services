@@ -21,6 +21,8 @@ module.exports = {
         image: req.body.image,
         price: req.body.price,
         quota: req.body.quota,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
       },
     }).then((result) => {
       console.log('a result was created');
