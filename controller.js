@@ -2,6 +2,7 @@ const client = require('./connection.js');
 
 module.exports = {
   createEvent: (req, res) => {
+    console.log('REQINELASTICSEARCHCREATEEVENTIS:', req.body);
     client.index({
       index: 'events',
       type: 'event',

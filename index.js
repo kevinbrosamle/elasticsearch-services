@@ -9,20 +9,8 @@ const jsonParser = bodyParser.json();
 
 app.use(jsonParser);
 
-client.ping({
-  requestTimeout: 30000,
-
-  // undocumented params are appended to the query string
-  hello: 'elasticsearch',
-}, function (error) {
-  if (error) {
-    console.error('elasticsearch cluster is down!');
-  } else {
-    console.log('All is well');
-  }
-});
-
 app.post('/api/events', (req, res) => {
+  console.log('ES API EVENTS:', req.body);
   controller.createEvent(req, res);
 });
 
