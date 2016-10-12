@@ -67,6 +67,8 @@ module.exports = {
           image: hit._source.image,
           price: hit._source.price,
           quota: hit._source.quota,
+          latitude: hit._source.latitude,
+          longitude: hit._source.longitude,
         };
         results.push(resultObj);
       });
