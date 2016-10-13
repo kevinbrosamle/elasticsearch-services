@@ -2,7 +2,6 @@ const client = require('./connection.js');
 
 module.exports = {
   createEvent: (req, res) => {
-    console.log('REQINELASTICSEARCHCREATEEVENTIS:', req.body);
     client.index({
       index: 'events',
       type: 'event',
@@ -26,7 +25,6 @@ module.exports = {
         longitude: req.body.longitude,
       },
     }).then((result) => {
-      console.log('a result was created');
       res.status(200).send(result);
     }).catch((error) => {
       res.status(500).send(error);
